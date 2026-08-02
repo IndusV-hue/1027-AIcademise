@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIcademics — Study smarter, think sharper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:#1C2B22;
+    --paper:#F3EFE4;
+    --paper-deep:#E7DFC9;
+    --forest:#2F5233;
+    --teal:#3E7C74;
+    --gold:#C9982F;
+    --line: rgba(28,43,34,0.16);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  img, svg{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ============ margin-rule signature device ============ */
+  .margin-rule{
+    position:relative;
+    padding-left:28px;
+    border-left:1.5px solid var(--line);
+  }
+  .margin-rule::before{
+    content: attr(data-note);
+    position:absolute;
+    left:-2px;
+    top:-1.6em;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--teal);
+    white-space:nowrap;
+    transform:translateX(2px);
+  }
+
+  /* ============ header ============ */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(243,239,228,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 32px;
+    max-width:1160px;
+    margin:0 auto;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:22px;
+    letter-spacing:-0.01em;
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+  }
+  .logo .dot{ color:var(--gold); }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    font-size:15px;
+    font-weight:500;
+  }
+  .nav-links a{
+    text-decoration:none;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:1.5px;
+    background:var(--gold);
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    font-family:var(--font-mono);
+    font-size:13px;
+    border:1px solid var(--ink);
+    padding:9px 18px;
+    border-radius:2px;
+    text-decoration:none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .nav-cta:hover{ background:var(--forest); color:var(--paper); border-color:var(--forest); }
+
+  @media (max-width:760px){
+    .nav-links{ display:none; }
+  }
+
+  /* ============ hero ============ */
+  .hero{
+    padding:96px 32px 80px;
+    max-width:1160px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.4fr 0.9fr;
+    gap:64px;
+    align-items:end;
+  }
+  .hero-eyebrow{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--teal);
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:block;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(40px, 5.4vw, 74px);
+    line-height:1.03;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--forest);
+  }
+  .hero-sub{
+    grid-column:1 / span 1;
+    margin-top:26px;
+    font-size:18px;
+    max-width:46ch;
+    color:rgba(28,43,34,0.82);
+  }
+  .hero-actions{
+    margin-top:34px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+  }
+  .btn-primary{
+    background:var(--forest);
+    color:var(--paper);
+    font-weight:500;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(31,61,43,0.25); }
+  .btn-ghost{
+    font-size:15px;
+    font-weight:500;
+    text-decoration:underline;
+    text-decoration-color:var(--gold);
+    text-underline-offset:5px;
+  }
+
+  .hero-ledger{
+    font-size:13px;
+    line-height:1.5;
+    border-left:1.5px solid var(--line);
+    padding-left:22px;
+  }
+  .hero-ledger .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    border-bottom:1px dashed var(--line);
+    padding:14px 0;
+  }
+  .hero-ledger .row span:first-child{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.02em;
+    color:rgba(28,43,34,0.62);
+    text-transform:uppercase;
+  }
+  .hero-ledger .row span:last-child{
+    font-family:var(--font-display);
+    font-size:22px;
+    font-weight:500;
+    font-variant-numeric:tabular-nums;
+    letter-spacing:-0.01em;
+    color:var(--forest);
+  }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns:1fr; }
+  }
+
+  /* ============ marquee subjects strip ============ */
+  .strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--paper-deep);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:14px 0;
+  }
+  .strip-track{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.03em;
+    animation:scroll 32s linear infinite;
+  }
+  .strip-track span{ margin:0 26px; color:rgba(28,43,34,0.7); }
+  .strip-track span::before{ content:"— "; color:var(--gold); }
+  @keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .strip-track{ animation:none; }
+  }
+
+  /* ============ section shell ============ */
+  section{
+    padding:100px 0;
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(30px, 3.6vw, 44px);
+    letter-spacing:-0.01em;
+    margin-top:10px;
+  }
+  .section-head p{
+    margin-top:16px;
+    font-size:16.5px;
+    color:rgba(28,43,34,0.75);
+  }
+
+  /* ============ philosophy / sustainable use ============ */
+  .philosophy{ background:var(--paper-deep); }
+  .principles{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .principle{
+    background:var(--paper-deep);
+    padding:34px 30px;
+  }
+  .principle .mark{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.05em;
+  }
+  .principle h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:21px;
+    margin-top:14px;
+  }
+  .principle p{
+    margin-top:10px;
+    font-size:14.5px;
+    color:rgba(28,43,34,0.75);
+  }
+  @media (max-width:760px){
+    .principles{ grid-template-columns:1fr; }
+  }
+
+  /* ============ how it works ============ */
+  .how-list{ display:flex; flex-direction:column; }
+  .how-item{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:28px;
+    padding:30px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .how-item:last-child{ border-bottom:1px solid var(--line); }
+  .how-item .num{
+    font-family:var(--font-mono);
+    font-size:14px;
+    color:var(--teal);
+    padding-top:4px;
+  }
+  .how-item h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:23px;
+  }
+  .how-item p{
+    margin-top:8px;
+    font-size:15.5px;
+    color:rgba(28,43,34,0.75);
+    max-width:60ch;
+  }
+
+  /* ============ subjects grid ============ */
+  .subjects{ background:var(--forest); color:var(--paper); }
+  .subjects .section-head p{ color:rgba(243,239,228,0.75); }
+  .subject-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .subject-card{
+    border:1px solid rgba(243,239,228,0.22);
+    padding:26px 20px;
+    border-radius:2px;
+    transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .subject-card:hover{ border-color:var(--gold); transform:translateY(-3px); }
+  .subject-card .glyph{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--gold);
+  }
+  .subject-card h4{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:19px;
+    margin-top:12px;
+  }
+  .subject-card p{
+    margin-top:8px;
+    font-size:13.5px;
+    color:rgba(243,239,228,0.7);
+  }
+  @media (max-width:900px){
+    .subject-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ============ stats / footnote ledger ============ */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:40px;
+  }
+  .stat .figure{
+    font-family:var(--font-display);
+    font-size:52px;
+    font-weight:500;
+    color:var(--forest);
+  }
+  .stat .label{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:rgba(28,43,34,0.7);
+    margin-top:8px;
+  }
+  @media (max-width:760px){
+    .stats{ grid-template-columns:1fr; gap:32px; }
+  }
+
+  /* ============ testimonial ============ */
+  .testimonial{
+    background:var(--paper-deep);
+  }
+  .testimonial blockquote{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:clamp(24px, 3vw, 34px);
+    max-width:820px;
+    line-height:1.4;
+  }
+  .testimonial cite{
+    display:block;
+    margin-top:24px;
+    font-family:var(--font-mono);
+    font-style:normal;
+    font-size:13px;
+    color:var(--teal);
+  }
+
+  /* ============ assistant preview strip ============ */
+  .assistant-preview{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:32px;
+    background:var(--paper-deep);
+  }
+  .assistant-preview-badge{
+    flex:none;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--forest);
+    color:var(--paper);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:0.02em;
+    box-shadow:0 6px 18px rgba(31,61,43,0.25);
+  }
+  .assistant-preview h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:19px;
+  }
+  .assistant-preview p{
+    margin-top:6px;
+    font-size:14.5px;
+    color:rgba(28,43,34,0.72);
+  }
+  @media (max-width:600px){
+    .assistant-preview{ flex-direction:column; text-align:center; }
+  }
+
+  /* ============ SSB floating chat widget ============ */
+  #ssb-launcher{
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    z-index:200;
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--forest);
+    color:var(--paper);
+    border:none;
+    cursor:pointer;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:0.02em;
+    box-shadow:0 10px 26px rgba(31,61,43,0.35);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #ssb-launcher:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 14px 30px rgba(31,61,43,0.4); }
+  #ssb-launcher .ring{
+    position:absolute;
+    inset:-6px;
+    border-radius:50%;
+    border:1.5px solid var(--gold);
+    opacity:0.6;
+  }
+
+  #ssb-panel{
+    position:fixed;
+    right:28px;
+    bottom:106px;
+    z-index:200;
+    width:360px;
+    max-width:calc(100vw - 40px);
+    height:480px;
+    max-height:calc(100vh - 160px);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    box-shadow:0 20px 50px rgba(28,43,34,0.28);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  #ssb-panel.is-open{ display:flex; }
+
+  #ssb-header{
+    background:var(--forest);
+    color:var(--paper);
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  #ssb-header .avatar{
+    width:36px; height:36px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--forest);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:600; font-size:13px;
+    flex:none;
+  }
+  #ssb-header .titles{ flex:1; }
+  #ssb-header .titles .name{ font-family:var(--font-display); font-weight:500; font-size:16px; }
+  #ssb-header .titles .status{ font-family:var(--font-mono); font-size:11px; color:rgba(243,239,228,0.7); margin-top:2px; }
+  #ssb-close{
+    background:none; border:none; color:var(--paper); cursor:pointer;
+    font-size:18px; line-height:1; padding:6px; opacity:0.8;
+  }
+  #ssb-close:hover{ opacity:1; }
+
+  #ssb-messages{
+    flex:1;
+    overflow-y:auto;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    background:var(--paper);
+  }
+  .ssb-msg{
+    max-width:82%;
+    font-size:14px;
+    line-height:1.5;
+    padding:10px 14px;
+    border-radius:12px;
+  }
+  .ssb-msg.bot{
+    align-self:flex-start;
+    background:var(--paper-deep);
+    border:1px solid var(--line);
+    border-bottom-left-radius:3px;
+  }
+  .ssb-msg.user{
+    align-self:flex-end;
+    background:var(--forest);
+    color:var(--paper);
+    border-bottom-right-radius:3px;
+  }
+  .ssb-msg .tag{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    opacity:0.6;
+    margin-bottom:4px;
+  }
+
+  #ssb-suggestions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:0 18px 14px;
+  }
+  .ssb-chip{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    border:1px solid var(--line);
+    background:var(--paper-deep);
+    padding:7px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    color:var(--ink);
+    transition:border-color 0.15s ease;
+  }
+  .ssb-chip:hover{ border-color:var(--gold); }
+
+  #ssb-inputrow{
+    display:flex;
+    gap:10px;
+    padding:14px;
+    border-top:1px solid var(--line);
+    background:var(--paper-deep);
+  }
+  #ssb-input{
+    flex:1;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:10px 16px;
+    font-family:var(--font-body);
+    font-size:14px;
+    background:var(--paper);
+    color:var(--ink);
+  }
+  #ssb-input:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  #ssb-send{
+    flex:none;
+    width:40px; height:40px;
+    border-radius:50%;
+    border:none;
+    background:var(--forest);
+    color:var(--paper);
+    cursor:pointer;
+    font-size:16px;
+  }
+  #ssb-send:hover{ background:#183120; }
+
+  /* ============ cta ============ */
+  .cta{
+    text-align:center;
+  }
+  .cta h2{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(32px, 4.4vw, 54px);
+    max-width:14ch;
+    margin:0 auto;
+  }
+  .cta p{
+    margin:20px auto 0;
+    max-width:50ch;
+    color:rgba(28,43,34,0.75);
+  }
+  .cta .btn-primary{ margin-top:32px; }
+
+  /* ============ footer ============ */
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 0;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .footer-grid .logo{ font-size:18px; }
+  .footer-links{
+    display:flex;
+    gap:26px;
+    list-style:none;
+    font-size:14px;
+  }
+  .footer-links a{ text-decoration:none; }
+  .footer-note{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:rgba(28,43,34,0.55);
+    margin-top:20px;
+    width:100%;
+  }
+
+  /* ============ focus visibility ============ */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* fade-in on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">AIcademics<span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#subjects">Subjects</a></li>
+      <li><a href="#assistant">Study Assistant</a></li>
+    </ul>
+    <a class="nav-cta" href="#cta">Start studying</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="hero-eyebrow">Est. for the next generation of learners</span>
+    <h1>Study with AI. <br>Think for <em>yourself</em>.</h1>
+    <p class="hero-sub">AIcademics helps students use artificial intelligence as a study partner, not a shortcut — turning every session into practice for the exam, the essay, and the argument you'll actually have to make yourself.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#cta">Start studying free</a>
+      <a class="btn-ghost" href="#philosophy">Read our principles</a>
+    </div>
+  </div>
+  <div class="hero-ledger margin-rule" data-note="// this week's ledger">
+    <div class="row"><span>Concepts explained</span><span>128,406</span></div>
+    <div class="row"><span>Practice questions solved</span><span>54,912</span></div>
+    <div class="row"><span>Essays outlined, not written for you</span><span>9,220</span></div>
+    <div class="row"><span>Study streaks kept</span><span>3,014</span></div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>Mathematics</span><span>Physics</span><span>Chemistry</span><span>Biology</span><span>Literature</span><span>History</span><span>Computer Science</span><span>Economics</span><span>Languages</span>
+    <span>Mathematics</span><span>Physics</span><span>Chemistry</span><span>Biology</span><span>Literature</span><span>History</span><span>Computer Science</span><span>Economics</span><span>Languages</span>
+  </div>
+</div>
+
+<section class="philosophy" id="philosophy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="hero-eyebrow">Our philosophy</span>
+      <h2>Sustainable use, not shortcut use.</h2>
+      <p>AI can make you a sharper student or a lazier one — the difference is entirely in how it's used. These are the rules we build every feature around.</p>
+    </div>
+    <div class="principles reveal">
+      <div class="principle">
+        <span class="mark">01 / Explain first</span>
+        <h3>Understanding before answers</h3>
+        <p>Every response walks through the reasoning first. The answer is the last thing you see, not the first.</p>
+      </div>
+      <div class="principle">
+        <span class="mark">02 / Practice, not proxies</span>
+        <h3>You do the working out</h3>
+        <p>The assistant sets up problems and checks your steps — it doesn't write the assignment for you.</p>
+      </div>
+      <div class="principle">
+        <span class="mark">03 / Honest limits</span>
+        <h3>Knows when to say "ask your teacher"</h3>
+        <p>For grading, judgment calls, and anything high-stakes, we point you back to a real person.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="hero-eyebrow">How it works</span>
+      <h2>Four steps, every session.</h2>
+    </div>
+    <div class="how-list reveal">
+      <div class="how-item">
+        <div class="num">01</div>
+        <div>
+          <h3>Bring your topic or your confusion</h3>
+          <p>Paste a problem set, a paragraph you don't understand, or just say what you're stuck on.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="num">02</div>
+        <div>
+          <h3>Get the reasoning, not just the result</h3>
+          <p>Every explanation is broken into the same steps a good tutor would use — no skipped logic.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="num">03</div>
+        <div>
+          <h3>Practice with questions that adapt</h3>
+          <p>Follow-up questions get harder or easier depending on what you actually got wrong.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="num">04</div>
+        <div>
+          <h3>Track what's actually sticking</h3>
+          <p>Your ledger shows which concepts are solid and which need another pass before the test.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="subjects" id="subjects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="hero-eyebrow" style="color:var(--gold);">Subjects</span>
+      <h2>Built for the classes you're actually taking.</h2>
+      <p>Each subject has its own way of thinking. Ours adapts to it instead of flattening everything into generic answers.</p>
+    </div>
+    <div class="subject-grid reveal">
+      <div class="subject-card">
+        <span class="glyph">∑</span>
+        <h4>Mathematics</h4>
+        <p>Step-by-step derivations, not just final answers.</p>
+      </div>
+      <div class="subject-card">
+        <span class="glyph">⚗</span>
+        <h4>Sciences</h4>
+        <p>Concept-first explanations before formulas.</p>
+      </div>
+      <div class="subject-card">
+        <span class="glyph">¶</span>
+        <h4>Humanities</h4>
+        <p>Argument structure and evidence, not pre-written essays.</p>
+      </div>
+      <div class="subject-card">
+        <span class="glyph">&lt;/&gt;</span>
+        <h4>Computer Science</h4>
+        <p>Debugging by understanding, line by line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="hero-eyebrow">In the ledger</span>
+      <h2>Where the hours actually go.</h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="figure">72%</div>
+        <div class="label">of session time spent on practice, not prompts</div>
+      </div>
+      <div class="stat">
+        <div class="figure">4.6×</div>
+        <div class="label">more follow-up questions asked than average tutoring app</div>
+      </div>
+      <div class="stat">
+        <div class="figure">0</div>
+        <div class="label">essays or assignments written on a student's behalf</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial">
+  <div class="wrap reveal">
+    <blockquote>"It didn't just give me the answer to my calculus problem — it made me redo the last two steps myself. That's the first time an app made me better at something instead of doing it for me."</blockquote>
+    <cite>— Final-year student, using AIcademics for exam prep</cite>
+  </div>
+</section>
+
+<section id="assistant">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="hero-eyebrow">Study Assistant</span>
+      <h2>Meet SSB — your Sustainable Study Buddy.</h2>
+      <p>One circle, always in the corner. Open it any time a doubt comes up mid-session — SSB walks you through the reasoning instead of just handing over the answer.</p>
+    </div>
+    <div class="assistant-preview reveal">
+      <div class="assistant-preview-badge">SSB</div>
+      <div>
+        <h3>Look for the circle in the bottom-right corner</h3>
+        <p>Click it to open a chat panel where you can ask about any subject, any time, without leaving the page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="wrap reveal">
+    <h2>Start the next session the smart way.</h2>
+    <p>Free to begin. No essay ever written for you — just a sharper way to study.</p>
+    <a class="btn-primary" href="#">Start studying free</a>
+  </div>
+</section>
+
+<!-- ============ SSB (Sustainable Study Buddy) chat widget ============ -->
+<button id="ssb-launcher" aria-label="Open SSB study assistant" aria-expanded="false">
+  <span class="ring" aria-hidden="true"></span>
+  SSB
+</button>
+
+<div id="ssb-panel" role="dialog" aria-label="SSB study assistant chat">
+  <div id="ssb-header">
+    <div class="avatar">SSB</div>
+    <div class="titles">
+      <div class="name">SSB · Sustainable Study Buddy</div>
+      <div class="status">Here to explain, not to do it for you</div>
+    </div>
+    <button id="ssb-close" aria-label="Close chat">✕</button>
+  </div>
+  <div id="ssb-messages">
+    <div class="ssb-msg bot">
+      <span class="tag">SSB</span>
+      Hi, I'm SSB. Tell me what you're stuck on — a formula, a paragraph, a proof — and I'll walk you through the reasoning before we get to any answer.
+    </div>
+  </div>
+  <div id="ssb-suggestions">
+    <button class="ssb-chip" type="button">Explain a concept</button>
+    <button class="ssb-chip" type="button">Check my working</button>
+    <button class="ssb-chip" type="button">Quiz me</button>
+  </div>
+  <div id="ssb-inputrow">
+    <input id="ssb-input" type="text" placeholder="Ask SSB a study question…" autocomplete="off">
+    <button id="ssb-send" aria-label="Send message">→</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="logo">AIcademics<span class="dot">.</span></div>
+    <ul class="footer-links">
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#subjects">Subjects</a></li>
+    </ul>
+    <p class="footer-note">© 2026 AIcademics. Built for sustainable, honest studying.</p>
+  </div>
+</footer>
+
+<script>
+  // Simple scroll-reveal for .reveal elements
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ============ SSB chat widget behavior ============
+  const launcher   = document.getElementById('ssb-launcher');
+  const panel      = document.getElementById('ssb-panel');
+  const closeBtn   = document.getElementById('ssb-close');
+  const messages   = document.getElementById('ssb-messages');
+  const input      = document.getElementById('ssb-input');
+  const sendBtn    = document.getElementById('ssb-send');
+  const chips      = document.querySelectorAll('.ssb-chip');
+
+  function openPanel(){
+    panel.classList.add('is-open');
+    launcher.setAttribute('aria-expanded', 'true');
+    input.focus();
+  }
+  function closePanel(){
+    panel.classList.remove('is-open');
+    launcher.setAttribute('aria-expanded', 'false');
+  }
+  launcher.addEventListener('click', () => {
+    panel.classList.contains('is-open') ? closePanel() : openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  function addMessage(text, who){
+    const div = document.createElement('div');
+    div.className = 'ssb-msg ' + who;
+    const tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = who === 'bot' ? 'SSB' : 'You';
+    div.appendChild(tag);
+    div.appendChild(document.createTextNode(text));
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  /* ================================================================
+     SSB reply engine — fully offline, no API key or account needed.
+     It reads each question for a SUBJECT and an INTENT, then answers
+     with a tailored, study-first response. Everything runs in the
+     browser; nothing is sent anywhere.
+  ================================================================ */
+
+  const SSB_SUBJECTS = [
+    { key: 'math', match: ['math','algebra','calculus','geometry','trigonometry','equation','derivative','integral','arithmetic'],
+      name: 'Maths' },
+    { key: 'physics', match: ['physics','mechanics','velocity','force','energy','motion','thermodynamics','optics'],
+      name: 'Physics' },
+    { key: 'chemistry', match: ['chemistry','chemical','reaction','mole','compound','periodic table','organic chemistry'],
+      name: 'Chemistry' },
+    { key: 'biology', match: ['biology','cell','genetics','dna','photosynthesis','organism','ecosystem','anatomy'],
+      name: 'Biology' },
+    { key: 'literature', match: ['essay','literature','poem','novel','paragraph','thesis','argument','writing','grammar'],
+      name: 'Literature & Writing' },
+    { key: 'history', match: ['history','war','revolution','century','historical','empire','treaty'],
+      name: 'History' },
+    { key: 'cs', match: ['code','coding','program','python','java','javascript','function','bug','algorithm','loop'],
+      name: 'Computer Science' },
+    { key: 'economics', match: ['economics','supply','demand','market','inflation','gdp','economy'],
+      name: 'Economics' }
+  ];
+
+  const SSB_INTENTS = {
+    explain:  ['explain','what is','what are','how does','how do','define','meaning of','concept'],
+    check:    ['check','review','correct','is this right','did i get','my answer','my working','my solution'],
+    quiz:     ['quiz','test me','practice question','ask me','give me questions'],
+    plan:     ['study plan','schedule','revision plan','how should i study','organise my study','plan my'],
+    stuck:    ['stuck','confused','don\'t understand','dont understand','lost','no idea'],
+    essay:    ['write my essay','write my assignment','write this for me','do my homework','do my assignment'],
+    motivation: ['procrastinat','can\'t focus','cant focus','tired of studying','no motivation','burnt out','burned out'],
+    greeting: ['hi','hello','hey','good morning','good evening'],
+    thanks:   ['thank you','thanks','appreciate it'],
+    identity: ['who are you','what can you do','what is ssb','about ssb']
+  };
+
+  function detectSubject(q){
+    for (const s of SSB_SUBJECTS){
+      if (s.match.some(k => q.includes(k))) return s;
+    }
+    return null;
+  }
+
+  function detectIntent(q){
+    for (const [intent, keys] of Object.entries(SSB_INTENTS)){
+      if (keys.some(k => q.includes(k))) return intent;
+    }
+    return null;
+  }
+
+  const SUBJECT_EXPLAIN_TEMPLATES = {
+    math: "Let's break the concept into the smallest steps rather than jumping to a formula — tell me exactly which topic (e.g. quadratic equations, derivatives, ratios) and I'll walk through the logic before any calculation.",
+    physics: "Physics concepts click best when you can picture what's physically happening first. Tell me the specific topic and I'll start with the intuition, then bring in the equation.",
+    chemistry: "For chemistry, understanding *why* a reaction happens usually matters more than memorising it. Give me the specific topic and I'll explain the underlying idea before the equation or rule.",
+    biology: "Biology concepts connect to bigger systems — tell me the specific topic and I'll explain how it fits into the wider process, not just the definition.",
+    literature: "For writing and literature, I'll help you build the argument or interpretation yourself rather than handing you a finished paragraph. What's the text or topic?",
+    history: "History is about cause and consequence, not just dates. Tell me the event or period and I'll walk through why it happened and what it led to.",
+    cs: "For code, understanding the logic matters more than copying a fix. Share the specific concept or the error you're seeing and I'll explain what's actually happening, step by step.",
+    economics: "Economics ideas make more sense with a real example attached. Tell me the specific concept and I'll explain the mechanism before the graph or formula."
+  };
+
+  const SUBJECT_CHECK_TEMPLATES = {
+    math: "Share your working step by step, and I'll point out exactly where the logic holds up or breaks — not just whether the final number is right.",
+    physics: "Walk me through your steps and the units you used — most physics slip-ups happen in the setup, not the arithmetic.",
+    chemistry: "Share your steps — I'll check whether the reasoning behind each step is sound, not just the final answer.",
+    biology: "Share what you've written and I'll check whether the explanation actually captures the mechanism, not just the right keywords.",
+    literature: "Paste your paragraph or argument and I'll point out where the evidence supports your point and where it doesn't — I won't rewrite it for you.",
+    history: "Share your argument or answer and I'll check whether your reasoning about cause and effect actually holds together.",
+    cs: "Paste the code and describe what it's supposed to do versus what it's actually doing — I'll help you trace the logic rather than just handing you a fix.",
+    economics: "Share your reasoning and I'll check whether the mechanism you're describing actually explains the outcome."
+  };
+
+  const GENERIC_REPLIES = {
+    greeting: "Hi, I'm SSB — your Sustainable Study Buddy. What are you working on today?",
+    thanks: "Happy to help — good luck with the studying. Come back any time you get stuck.",
+    identity: "I'm SSB, the study assistant built into AIcademics. I help you work through concepts, check your reasoning, and quiz you — but I won't write assignments or essays for you, since that defeats the point of studying.",
+    essay: "I won't write the essay or assignment itself — but I'm glad to help you build an outline, sharpen your thesis, or talk through your argument so the finished piece is genuinely yours.",
+    stuck: "That's alright — being stuck is usually the sign you're right at the edge of understanding something new. Tell me the specific topic and where exactly it stops making sense, and we'll work through it from there.",
+    motivation: "That's a really common feeling, especially mid-term. Try committing to just 10 focused minutes on one small piece of the material — momentum usually does the rest. What subject is weighing on you most right now?",
+    plan: "Tell me what you're studying for (an exam, a project, ongoing coursework) and how many days you have — I'll help you break it into a realistic day-by-day plan.",
+    fallback: "Tell me a bit more: which subject is this for, and what have you tried so far? That helps me explain it the right way instead of just handing over an answer."
+  };
+
+  function getSSBReply(question){
+    const q = question.toLowerCase();
+    const intent = detectIntent(q);
+    const subject = detectSubject(q);
+
+    if (intent === 'greeting') return GENERIC_REPLIES.greeting;
+    if (intent === 'thanks') return GENERIC_REPLIES.thanks;
+    if (intent === 'identity') return GENERIC_REPLIES.identity;
+    if (intent === 'essay') return GENERIC_REPLIES.essay;
+    if (intent === 'motivation') return GENERIC_REPLIES.motivation;
+    if (intent === 'plan') return GENERIC_REPLIES.plan;
+
+    if (intent === 'quiz'){
+      return subject
+        ? `Good — let's quiz you on ${subject.name}. Give me the specific topic within it, and I'll start with an easier question, then adjust based on what you get right or wrong.`
+        : "Good — tell me the subject and topic, and I'll start with an easier question, then adjust based on what you get right or wrong.";
+    }
+
+    if (intent === 'stuck'){
+      return subject
+        ? `${GENERIC_REPLIES.stuck} Since this is ${subject.name}, also tell me the exact topic so I can meet you at the right point.`
+        : GENERIC_REPLIES.stuck;
+    }
+
+    if (intent === 'check'){
+      if (subject && SUBJECT_CHECK_TEMPLATES[subject.key]) return SUBJECT_CHECK_TEMPLATES[subject.key];
+      return "Paste your steps so far, and I'll point out exactly where the reasoning holds up or breaks down — I won't just tell you if it's right or wrong.";
+    }
+
+    if (intent === 'explain' || subject){
+      if (subject && SUBJECT_EXPLAIN_TEMPLATES[subject.key]) return SUBJECT_EXPLAIN_TEMPLATES[subject.key];
+      return "Tell me the specific concept and your subject/grade level, and I'll break it into the smallest steps before we get to any formula or answer.";
+    }
+
+    return GENERIC_REPLIES.fallback;
+  }
+
+  function handleSend(){
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    input.value = '';
+    setTimeout(() => addMessage(getSSBReply(text), 'bot'), 400);
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      input.value = chip.textContent;
+      handleSend();
+    });
+  });
+</script>
+
+</body>
+</html>
